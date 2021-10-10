@@ -136,24 +136,24 @@
                 
             </li><!-- li finish -->
             
-            <li><!-- li begin -->
-                <a href="#" data-toggle="collapse" data-target="#slides"><!-- a href begin -->
+            <!-- <li>
+                <a href="#" data-toggle="collapse" data-target="#slides">
                         
                         <i class="fa fa-fw fa-gear"></i> Slides
                         <i class="fa fa-fw fa-caret-down"></i>
                         
-                </a><!-- a href finish -->
+                </a>
                 
-                <ul id="slides" class="collapse"><!-- collapse begin -->
-                    <li><!-- li begin -->
+                <ul id="slides" class="collapse">
+                    <li>
                         <a href="index.php?insert_slide"> Insert Slide </a>
-                    </li><!-- li finish -->
-                    <li><!-- li begin -->
+                    </li>
+                    <li>
                         <a href="index.php?view_slides"> View Slides </a>
-                    </li><!-- li finish -->
-                </ul><!-- collapse finish -->
+                    </li>
+                </ul>
                 
-            </li><!-- li finish -->
+            </li> -->
             
             <li><!-- li begin -->
                 <a href="index.php?view_customers"><!-- a href begin -->

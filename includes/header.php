@@ -94,9 +94,9 @@ if(isset($_COOKIE['current_user_auth_key'])){
 				<!-- //header lists -->
 				<!-- search -->
 				<div class="agileits_search">
-					<form action="#" method="post">
-						<input name="Search" type="search" placeholder="How can we help you today?" required="">
-						<button type="submit" class="btn btn-default" aria-label="Left Align">
+					<form action="search.php" method="post">
+						<input name="keywords" type="search" placeholder="How can we help you today?" required="">
+						<button name="search" type="submit" class="btn btn-default" aria-label="Left Align">
 							<span class="fa fa-search" aria-hidden="true"> </span>
 						</button>
 					</form>

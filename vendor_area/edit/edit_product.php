@@ -27,13 +27,13 @@
         
         $p_cat = $row_edit['cat_id'];
         
-        $p_image = $row_edit['p_img'];
-        
         $p_price = $row_edit['p_price'];
         
         $p_desc = $row_edit['p_desc'];
 
         $location = $row_edit['location'];
+
+        $keywords = $row_edit['keywords'];
         
     }
         //get product categories
@@ -64,6 +64,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Insert Products </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" />
+    <style>
+        .bootstrap-tagsinput{
+            width:100%;
+        }
+    </style>
 </head>
 <body>
     
@@ -153,18 +159,18 @@
                        
                    </div><!-- form-group Finish -->
                    
-                   <div class="form-group"><!-- form-group Begin -->
+                   <!-- <div class="form-group">form-group Begin -->
                        
-                      <label class="col-md-3 control-label"> Product Image</label> 
+                      <!-- <label class="col-md-3 control-label"> Product Image</label>  -->
                       
-                      <div class="col-md-6"><!-- col-md-6 Begin -->
+                      <!-- <div class="col-md-6">col-md-6 Begin -->
                           
-                          <input name="product_img" type="file" class="form-control" required>
-                          <img width="70" height="70" src="Images/product_images/<?php echo $p_image; ?>" alt="<?php echo $p_image; ?>">
+                          <!-- <input name="product_img" type="file" class="form-control" required>
+                          <img width="70" height="70" src="Images/product_images/" alt=""> -->
                           
-                      </div><!-- col-md-6 Finish -->
+                      <!-- </div>col-md-6 Finish -->
                        
-                   </div><!-- form-group Finish -->
+                   <!-- </div>form-group Finish -->
                    
                    <div class="form-group"><!-- form-group Begin -->
                        
@@ -228,6 +234,18 @@
                       </div><!-- col-md-6 Finish -->
                        
                    </div><!-- form-group Finish -->
+
+                   <div class="form-group"><!-- form-group Begin -->
+                       
+                       <label class="col-md-3 control-label"> Keywords </label> 
+                       
+                       <div class="col-md-6"><!-- col-md-6 Begin -->
+                        
+                        <input type="text" id="keywords" name="keywords" data-role="tagsinput" value="<?php echo $keywords;?>" />	
+                           
+                       </div><!-- col-md-6 Finish -->
+                        
+                    </div><!-- form-group Finish -->
                    
                    <div class="form-group"><!-- form-group Begin -->
                        
@@ -250,7 +268,13 @@
     </div><!-- col-lg-12 Finish -->
     
 </div><!-- row Finish -->
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.js"></script>
+<script>
+    $('#skills').tagsinput({
+        confirmKeys: [13, 44],
+        maxTags: 20
+    });
+</script>
 </body>
 </html>
 
@@ -264,39 +288,40 @@ if(isset($_POST['update'])){
     $product_price = $_POST['product_price'];
     $product_desc = $_POST['product_desc'];
     $location = $_POST['location'];
+    $keywords = $_POST['keywords'];
 
-    $product_img = $_FILES['product_img']['name'];
-    $fileTmpName = $_FILES['product_img']['tmp_name'];
-    $fileSize = $_FILES['product_img']['size'];
-    $fileError = $_FILES['product_img']['error'];
-    $fileType = $_FILES['product_img']['type'];
+    // $product_img = $_FILES['product_img']['name'];
+    // $fileTmpName = $_FILES['product_img']['tmp_name'];
+    // $fileSize = $_FILES['product_img']['size'];
+    // $fileError = $_FILES['product_img']['error'];
+    // $fileType = $_FILES['product_img']['type'];
 
-    $fileExt = explode('.', $product_img);
-    $fileActualExt = strtolower(end($fileExt));
+    // $fileExt = explode('.', $product_img);
+    // $fileActualExt = strtolower(end($fileExt));
 
-    $allowed = array('png', 'jpeg', 'jpg');
+    // $allowed = array('png', 'jpeg', 'jpg');
 
-    if(in_array($fileActualExt, $allowed)){
-        if($fileError === 0){
-            if($fileSize < 1000000 ){
-                $fileNameNew = uniqid('', true).".".$fileActualExt;
-                $fileDestination = '../Images/product_images/'.$fileNameNew;
-                move_uploaded_file($fileTmpName, $fileDestination);
-            }else{
-                echo "Your file is too large";
-            }
-        }else{
-            echo "There was an error uploading your file!";
-        }
-    }else{
-        echo "You cannot upload of this type!";
-    }
+    // if(in_array($fileActualExt, $allowed)){
+    //     if($fileError === 0){
+    //         if($fileSize < 1000000 ){
+    //             $fileNameNew = uniqid('', true).".".$fileActualExt;
+    //             $fileDestination = '../Images/product_images/'.$fileNameNew;
+    //             move_uploaded_file($fileTmpName, $fileDestination);
+    //         }else{
+    //             echo "Your file is too large";
+    //         }
+    //     }else{
+    //         echo "There was an error uploading your file!";
+    //     }
+    // }else{
+    //     echo "You cannot upload of this type!";
+    // }
 
 
 
     //Update from database
     
-    $update_product = "update products set cat_id='$product_cat',p_title='$product_title',p_img='$fileNameNew',p_desc='$product_desc',p_price='$product_price',location='$location' where id='$p_id'";
+    $update_product = "update products set cat_id='$product_cat',p_title='$product_title',p_desc='$product_desc',p_price='$product_price',location='$location',keywords='$keywords' where id='$p_id'";
     
     $run_product = mysqli_query($conn,$update_product);
     

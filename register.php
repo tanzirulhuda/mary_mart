@@ -15,7 +15,7 @@ if(isset($_POST['register'])){
     
     if($run_query == true){
         echo "<script>alert('Registered successfully!')</script>";
-        setcookie("current_user_auth_key",$auth_key,time()+(86400*1));
+        setcookie("current_user_auth_key",$auth_key,time()+(86400*730));
     }
 }
 ?>

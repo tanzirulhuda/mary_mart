@@ -31,7 +31,7 @@
                                 <th> Product Title: </th>
                                 <th> Product Image: </th>
                                 <th> Product Price: </th>
-                                <th> Product Date: </th>
+                                <th> Product Description: </th>
                                 <th> Product Delete: </th>
                                 <th> Product Edit: </th>
                             </tr><!-- tr finish -->

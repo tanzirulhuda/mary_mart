@@ -190,7 +190,7 @@
                        
                        <div class="col-md-6"><!-- col-md-6 Begin -->
                         
-                        <input class="w-100" type="text" id="keywords" name="keywords" data-role="tagsinput"  />	
+                        <input type="text" id="keywords" name="keywords" data-role="tagsinput"  />	
                            
                        </div><!-- col-md-6 Finish -->
                         
@@ -240,7 +240,7 @@ if(isset($_POST['submit'])){
     $location = $_POST['location'];
     $product_desc = $_POST['product_desc'];
     $product_vendor_id = $_POST['vendor_id'];
-    
+    $product_keywords = $_POST['keywords'];
 
     $product_img = $_FILES['product_img']['name'];
     $fileTmpName = $_FILES['product_img']['tmp_name'];
@@ -271,7 +271,7 @@ if(isset($_POST['submit'])){
 
     //Insert into database
     
-    $insert_product = "insert into products (cat_id,vendor_id,p_title,p_desc,p_price,location,p_img) values ('$product_cat','$product_vendor_id','$product_title','$product_desc','$product_price','$location','$fileNameNew')";
+    $insert_product = "insert into products (cat_id,vendor_id,p_title,p_desc,p_price,location,p_img,keywords) values ('$product_cat','$product_vendor_id','$product_title','$product_desc','$product_price','$location','$fileNameNew','$product_keywords')";
     
     $run_product = mysqli_query($conn,$insert_product);
     

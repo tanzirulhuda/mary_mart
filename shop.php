@@ -22,6 +22,7 @@ add_cart();
 			window.scrollTo(0, 1);
 		}
 	</script>
+	<link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
 	<!--//tags -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css" media="all" />
@@ -63,7 +64,7 @@ add_cart();
 			<div class="container">
 				<div style="display:flex;justify-content:center;align-items:center;">
 				<center>
-					<img src="Images/empty.svg" width="100%" alt="">
+					<img src="images/empty.svg" width="100%" alt="">
 				</center>
 				</div>
 			</div>
@@ -99,7 +100,7 @@ add_cart();
 					<div class="special-sec1">
 						<a href="details.php?product_id=<?php echo $id; ?>">
 							<div class="col-xs-4 img-deals">
-								<img style="width:70px; height:70px;" src="Images/product_images/<?php echo $img; ?>" alt="">
+								<img style="width:70px; height:70px;" src="images/product_images/<?php echo $img; ?>" alt="">
 							</div>
 							<div class="col-xs-8 img-deal1">
 								<h3><?php echo $title; ?></h3>
@@ -133,7 +134,7 @@ add_cart();
 						<div class="col-md-4 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
-									<img width="160px" height="150px" src="Images/product_images/<?php echo $img; ?>" alt="">
+									<img width="160px" height="150px" src="images/product_images/<?php echo $img; ?>" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
 											<a href="details.php?product_id=<?php echo $id; ?>" class="link-product-add-cart">Quick View</a>
@@ -203,7 +204,7 @@ add_cart();
 					<div class="special-sec1">
 						<a href="details.php?product_id=<?php echo $id; ?>">
 							<div class="col-xs-4 img-deals">
-								<img style="width:70px; height:70px;" src="Images/product_images/<?php echo $img; ?>" alt="">
+								<img style="width:70px; height:70px;" src="images/product_images/<?php echo $img; ?>" alt="">
 							</div>
 							<div class="col-xs-8 img-deal1">
 								<h3><?php echo $title; ?></h3>
@@ -237,7 +238,7 @@ add_cart();
 						<div class="col-md-4 product-men">
 							<div class="men-pro-item simpleCart_shelfItem">
 								<div class="men-thumb-item">
-									<img width="160px" height="150px" src="Images/product_images/<?php echo $img; ?>" alt="">
+									<img width="160px" height="150px" src="images/product_images/<?php echo $img; ?>" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
 											<a href="details.php?product_id=<?php echo $id; ?>" class="link-product-add-cart">Quick View</a>

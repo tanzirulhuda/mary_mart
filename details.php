@@ -39,6 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			window.scrollTo(0, 1);
 		}
 	</script>
+	<link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
 	<!--//tags -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -84,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<ul class="slides">
 						<li data-thumb="images/si.jpg">
 							<div class="thumb-image">
-								<img src="Images/product_images/<?php echo $img; ?>" data-imagezoom="true" class="img-responsive" alt=""> 
+								<img src="images/product_images/<?php echo $img; ?>" data-imagezoom="true" class="img-responsive" alt=""> 
 							</div>
 						</li>
 					</ul>
@@ -188,7 +189,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="mm-specilamk">
 							<div class="speioffer-agile">
 								<a href="details.php?product_id=<?php echo $id; ?>">
-									<img width="150px" height="150px" src="Images/product_images/<?php echo $img; ?>" alt="">
+									<img width="150px" height="150px" src="images/product_images/<?php echo $img; ?>" alt="">
 								</a>
 							</div>
 							<div class="product-name-mm">

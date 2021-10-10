@@ -32,7 +32,7 @@ if(isset($_POST['sign_in'])){
     
     if($check_customer==1 AND $check_cart==0){
         
-       setcookie("current_user_auth_key",$auth_key,time()+(86400*1));
+       setcookie("current_user_auth_key",$auth_key,time()+(86400*730));
         
 //       echo "<script>alert('You are Logged in')</script>"; 
         

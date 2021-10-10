@@ -22,6 +22,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			window.scrollTo(0, 1);
 		}
 	</script>
+	<link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
 	<!--//tags -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />

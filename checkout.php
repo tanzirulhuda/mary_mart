@@ -35,6 +35,7 @@ if(isset($_COOKIE['current_user_auth_key'])){
 			window.scrollTo(0, 1);
 		}
 	</script>
+    <link rel="shortcut icon" href="./images/ico.png" type="image/x-icon">
 	<!--//tags -->
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/style.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css" media="all" />
