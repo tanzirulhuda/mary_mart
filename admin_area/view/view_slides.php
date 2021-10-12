@@ -63,7 +63,7 @@
                         
                         <div class="panel-body"><!-- panel-body begin -->
                             
-                            <img src="../Images/slides_image/<?php echo $slide_image; ?>" alt="<?php echo $slide_heading; ?>" class="img-responsive">
+                            <img src="../images/slides_image/<?php echo $slide_image; ?>" alt="<?php echo $slide_heading; ?>" class="img-responsive">
                             
                         </div><!-- panel-body finish -->
                         

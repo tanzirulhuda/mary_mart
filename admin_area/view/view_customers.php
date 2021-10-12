@@ -75,7 +75,7 @@
                             <tr><!-- tr begin -->
                                 <td> <?php echo $i; ?> </td>
                                 <td> <?php echo $c_name; ?> </td>
-                                <td> <img style="object-fit:cover;" src="../customer/Images/<?php echo $c_img; ?>" width="60" height="60"></td>
+                                <td> <img style="object-fit:cover;" src="../customer/images/<?php echo $c_img; ?>" width="60" height="60"></td>
                                 <td> <?php echo $c_phone; ?> </td>
                                 <td> <?php echo $c_address ?> </td>
                                 <td> 

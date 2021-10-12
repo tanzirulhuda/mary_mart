@@ -80,7 +80,7 @@
                             <tr><!-- tr begin -->
                                 <td> <?php echo $i; ?> </td>
                                 <td> <?php echo $user_name; ?> </td>
-                                <td> <img style="object-fit:cover;" src="../vendor_area/Images/profile_image/<?php echo $user_img; ?>" width="60" height="60"></td>
+                                <td> <img style="object-fit:cover;" src="../vendor_area/images/profile_image/<?php echo $user_img; ?>" width="60" height="60"></td>
                                 <td> <?php echo $user_contact ?> </td>
                                 <td> <?php echo $district ?> </td>
                                 <td> <?php echo $location ?></td>
