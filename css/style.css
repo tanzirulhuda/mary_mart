@@ -1,5 +1,5 @@
 /* Cart */
-input#quantity {
+input.quantity {
     width: 28px;
     border: none;
     text-align: center;

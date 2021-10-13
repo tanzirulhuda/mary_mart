@@ -34,7 +34,7 @@ if(isset($_COOKIE['current_user_auth_key'])){
 				<form id="unq">
 					<div>
 						<div id="button" data-value="<?php echo $pro_id; ?>" class="dec button noselect">-</div>
-							<input class="noselect" type="text" id="quantity" value="<?php echo $pro_qty ?>" readonly/>
+							<input class="noselect quantity" type="text" id="quantity" value="<?php echo $pro_qty ?>" readonly/>
 						<div id="button" data-value="<?php echo $pro_id; ?>" class="inc button noselect">+</div>
 					</div>
 				</form>

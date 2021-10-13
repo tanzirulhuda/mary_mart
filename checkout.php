@@ -68,7 +68,8 @@ require_once('./includes/cart.php');
                     }
                     ?>
                   <tr>
-                    <td><img width="25px" height="25px" style="object-fit: cover;" src="Images/product_images/<?php echo $product_image; ?>"></td>
+                      <!-- Image src -->
+                    <td><img width="25px" height="25px" style="object-fit: cover;" src="images/product_images/<?php echo $product_image; ?>"></td>
                     <td><?php echo $product_title; ?></td>
                     <td><?php echo $pro_qty; ?> * <?php echo $only_price ?></td>
                     <td>৳ <?php echo $sub_total ?></td>
@@ -135,13 +136,5 @@ require_once('./includes/cart.php');
 
     <?php include_once('./includes/cart.php') ?>
 	<?php include_once('./includes/footer.php') ?>
-    <script>
-    $(document).ready(function(){  
-        $(document).on("click", "div#cd-cart", function(){
-            // alert("Hello");
-            $("div#cd-cart a#checkout-btn").remove();
-        });
-    });
-    </script>
 </body>
 </html>
