@@ -3,14 +3,11 @@
 if(isset($_COOKIE['current_user_auth_key'])){
 
     $auth_key = $_COOKIE['current_user_auth_key'];
-    
     $get_current_user = "select * from customers where auth_key = '$auth_key'";
-    
     $run_current_customer = mysqli_query($conn, $get_current_user);
-    
     $row_current_customer = mysqli_fetch_array($run_current_customer);
-    
     $customer_name = $row_current_customer['customer_name'];
+	$customer_addr = $row_current_customer['customer_address'];
 }
 
 
@@ -104,13 +101,13 @@ if(isset($_COOKIE['current_user_auth_key'])){
 				<!-- //search -->
 				<!-- cart details -->
 				<div class="top_nav_right">
-					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-							<button class="w3view-cart" id="cart-btn">
-								<a id="cd-cart-trigger"  style="color:inherit;" href="">
-								<span style="position: absolute;margin-left: 20px;margin-top: 23px;font-size: 16px;background: #ff5722;" class="badge badge-pill badge-light"><?php items(); ?></span>
-								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-								</a>
-							</button>
+					<div id="cart-btn" class="wthreecartaits wthreecartaits2 cart cart box_1">
+						<button class="w3view-cart">
+							<a id="cd-cart-trigger"  style="color:inherit;" href="">
+							<span style="position: absolute;margin-left: 20px;margin-top: 23px;font-size: 16px;background: #ff5722;" id="cart_item" class="badge badge-pill badge-light">0</span>
+							<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+							</a>
+						</button>
 					</div>
 				</div>
 				<!-- //cart details -->

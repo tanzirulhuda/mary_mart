@@ -45,7 +45,7 @@
 								$title = $row_cat['cat_name'];
 							?>
 							<li>
-								<a href="shop.php?product_category_id=<?php echo $id; ?>"><?php echo $title; ?></a>
+								<a href="shop.php?pro_cat=<?php echo $id; ?>"><?php echo $title; ?></a>
 							</li>
 							<?php }; ?>
 						</ul>
@@ -143,40 +143,6 @@
 					<p>Now Get Upto 40% Off On Everyday Essential Products Shown On The Offer Page. The range includes Grocery, Personal Care,
 						Baby Care, Pet Supplies, Healthcare and Other Daily Need Products. Discount May Vary From Product To Product.</p>
 				</div>
-				<!-- payment -->
-				<!-- <div class="sub-some child-momu">
-					<h5>Payment Method</h5>
-					<ul>
-						<li>
-							<img src="images/pay2.png" alt="">
-						</li>
-						<li>
-							<img src="images/pay5.png" alt="">
-						</li>
-						<li>
-							<img src="images/pay1.png" alt="">
-						</li>
-						<li>
-							<img src="images/pay4.png" alt="">
-						</li>
-						<li>
-							<img src="images/pay6.png" alt="">
-						</li>
-						<li>
-							<img src="images/pay3.png" alt="">
-						</li>
-						<li>
-							<img src="images/pay7.png" alt="">
-						</li>
-						<li>
-							<img src="images/pay8.png" alt="">
-						</li>
-						<li>
-							<img src="images/pay9.png" alt="">
-						</li>
-					</ul>
-				</div> -->
-				<!-- //payment -->
 			</div>
 			<!-- //footer fourth section (text) -->
 		</div>
@@ -265,21 +231,89 @@
 
 		});
 	</script>
-    <script>
+	<script>
 
-    $(document).ready(function(){
-        $("a#remove_id").on("click", function(){
-            var value = $(this).data("value");
-            $.post("includes/remove_product.php",{id: value},function(returnData){
-                if(returnData == "1"){
-                    console.log("Data deleted");
-                }
-            });
-//            $(this).parent().remove();
-            $(".cd-cart-items").load(window.location.href+" .cd-cart-items > *");
-            $("#cd-cart").load(window.location.href+" #cd-cart > *");
-            $("#cart-btn").load(window.location.href+" #cart-btn > *");
-        });
-    });
+	$(document).ready(function(){
+		//Add to cart
+		$(".add_to_cart_button").on("click", function(e){
+				e.preventDefault();
+				var form = $(this).closest(".form-submit");
+				var id = form.find(".id").val();
+				var qty = form.find(".qty").val();
+				var auth_key = form.find(".auth_key").val();
 
-    </script>
+				$.ajax({
+					url:"addCart.php",
+					method:"post",
+					data:{id:id, qty:qty, auth_key:auth_key},
+					success:function(response){
+						$(form.find("#addItem")).html(response).attr("disabled","disabled");
+						// window.scrollTo(0,0);
+						load_cart_item_number();
+						
+					}
+				});
+			});
+			load_cart_item_number();
+			//Count cart item
+			function load_cart_item_number(){
+				$.ajax({
+					url: "addCart.php",
+					method: "get",
+					data: {cartItem: "cart_item"},
+					success:function(response){
+						$("#cart_item").html(response);
+						$("#cd-cart").load(window.location.href+" #cd-cart > *");
+						$("#container").load(window.location.href+" #container > *");
+					}
+				});
+			}
+
+		//Increment decrement qty
+		$(document).on("click", "div.button", function() {
+		var $button = $(this);
+		var oldValue = $button.parent().find("input").val();
+		if ($button.text() == "+") {
+			var newVal = parseFloat(oldValue) + 1;
+		} else {
+		// Don't allow decrementing below zero
+		if (oldValue > 1) {
+			var newVal = parseFloat(oldValue) - 1;
+		} else {
+			newVal = 1;
+		}
+		}
+		$button.parent().find("input").val(newVal);
+		var newQty = $button.parent().find("input").val();
+		var proId = $button.data("value");
+		// console.log(proId);;
+			$.ajax({
+			type: "POST",
+			url: "update_cart_quantity.php?id=" + proId + "&newvalue=" + newQty,
+			data:{proId:proId, newQty: newQty},
+			success: function() {
+				// console.log($button.parent().find("input").val());
+				$("#cd-cart").load(window.location.href+" #cd-cart > *");
+				$("#container").load(window.location.href+" #container > *");
+			}
+			});
+		});
+		$(document).on("click", "div#item_info a#cd-item-remove", function(e){
+			e.preventDefault();
+			var id = $(this).data("id");
+			$.ajax({
+				url:"./includes/remove_product.php",
+				method:"post",
+				data:{id:id},
+				success:function(response){
+					$("#cart_item").html(response);
+					$("#cd-cart").load(window.location.href+" #cd-cart > *");
+					$("#container").load(window.location.href+" #container > *");
+				}
+
+			});
+		});
+	});
+
+	</script>
+

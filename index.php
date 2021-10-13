@@ -1,8 +1,6 @@
 <?php 
 require_once('db/db.php');
 require_once('includes/functions.php');
-add_cart();
-
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -37,6 +35,7 @@ add_cart();
 </head>
 
 <body>
+	<div class="alert-message"></div>
 	<?php require_once("includes/header.php") ?>
 	<!-- banner -->
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -153,7 +152,7 @@ add_cart();
 						
 						<?php
 					
-						$get_products = "select * from products order by rand() LIMIT 0,10";
+						$get_products = "select * from products order by rand() limit 20";
 						$run_products = mysqli_query($conn, $get_products);
 	
 						while($row_products = mysqli_fetch_array($run_products)){
@@ -183,10 +182,13 @@ add_cart();
 										<!-- <del>$280.00</del> -->
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="index.php?add_cart=<?php echo $id; ?>" method="post">
+										<form class="form-submit">
 											<fieldset>
-												<input type="hidden" name="product_qty" value="1" />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
+												<input class="id" type="hidden" name="product_id" value="<?php echo $id; ?>" />
+												<input class="qty" type="hidden" name="product_qty" value="1" />
+												<input class="auth_key" type="hidden" name="auth_key" value="<?php echo $auth_key; ?>" />
+												<!-- <input type="submit" name="submit" value="Add to cart" class="button" /> -->
+												<button class="add_to_cart_button" id="addItem" type="submit">Add to Cart</button>
 											</fieldset>
 										</form>
 									</div>
@@ -243,10 +245,13 @@ add_cart();
 									<h6>৳ <?php echo $price; ?></h6>
 								</div>
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="index.php?add_cart=<?php echo $id; ?>" method="post">
-											<fieldset>
-												<input type="hidden" name="product_qty" value="1" />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
+										<form class="form-submit">
+										<fieldset>
+												<input class="id" type="hidden" name="product_id" value="<?php echo $id; ?>" />
+												<input class="qty" type="hidden" name="product_qty" value="1" />
+												<input class="auth_key" type="hidden" name="auth_key" value="<?php echo $auth_key; ?>" />
+												<!-- <input type="submit" name="submit" value="Add to cart" class="button" /> -->
+												<button class="add_to_cart_button" id="addItem" type="submit">Add to Cart</button>
 											</fieldset>
 										</form>
 								</div>

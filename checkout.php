@@ -2,21 +2,6 @@
 require_once('./db/db.php');
 require_once('./includes/functions.php');
 require_once('./includes/cart.php');
-
-if(isset($_COOKIE['current_user_auth_key'])){
-
-    $auth_key = $_COOKIE['current_user_auth_key'];
-    
-    $get_current_user = "select * from customers where auth_key = '$auth_key'";
-    
-    $run_current_customer = mysqli_query($conn, $get_current_user);
-    
-    $row_current_customer = mysqli_fetch_array($run_current_customer);
-    
-    $customer_name = $row_current_customer['customer_name'];
-    
-    $customer_addr = $row_current_customer['customer_address'];
-}
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +35,7 @@ if(isset($_COOKIE['current_user_auth_key'])){
 </head>
 <body>
     <?php require_once("includes/header.php") ?>
-    <section class="container">
+    <section class="container" id="container">
         <div class="page-header"><h1>Checkout</h1></div>
         <table class="table table-hover" style="color:inherit;">
             <thead>
@@ -62,9 +47,8 @@ if(isset($_COOKIE['current_user_auth_key'])){
               </tr>
             </thead>
             <tbody>
-                <?php                      
-                $ip_add = getRealIpUser();			
-                $select_cart = "select * from cart where ip_add='$ip_add'";			
+                <?php                      		
+                $select_cart = "select * from cart where auth_key='$auth_key'";			
                 $run_cart = mysqli_query($conn,$select_cart);			
                 $count = mysqli_num_rows($run_cart);
                 while($row_cart = mysqli_fetch_array($run_cart)){			
@@ -138,8 +122,6 @@ if(isset($_COOKIE['current_user_auth_key'])){
                         <option value="5:00 - 6:00 PM">5:00 - 6:00 PM</option>  
                         <option value="6:00 - 7:00 PM">6:00 - 7:00 PM</option>  
                         <option value="7:00 - 8:00 PM">7:00 - 8:00 PM</option>  
-                        <option value="8:00 - 9:00 PM">8:00 - 9:00 PM</option>  
-                        <option value="8:00 - 9:00 PM">8:00 - 9:00 PM</option>  
                     </select>
                   </div>
                   <input type="hidden" name="due_amount" value="<?php echo $total; ?>">
@@ -154,8 +136,11 @@ if(isset($_COOKIE['current_user_auth_key'])){
     <?php include_once('./includes/cart.php') ?>
 	<?php include_once('./includes/footer.php') ?>
     <script>
-    $(document).ready(function(){
-        $('a#checkout-btn').remove();
+    $(document).ready(function(){  
+        $(document).on("click", "div#cd-cart", function(){
+            // alert("Hello");
+            $("div#cd-cart a#checkout-btn").remove();
+        });
     });
     </script>
 </body>

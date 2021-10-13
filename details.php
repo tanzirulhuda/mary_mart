@@ -1,8 +1,6 @@
 <?php 
 require_once('db/db.php');
 require_once('includes/functions.php');
-
-add_cart();
 ?>
 <?php
 
@@ -130,26 +128,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				</div>
 				<div class="occasion-cart">
 					<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-						<form action="index.php?add_cart=<?php echo $id; ?>" method="post">
+						<form class="form-submit">
 							<fieldset>
-								<!-- Input QTY -->
-
+								<!-- Input QTY -->								
 								<div class="input-group">
                                     <span class="input-group-btn">
                                         <button type="button" class="quantity-left-minus btn btn-number"  data-type="minus" data-field="">
                                           <span class="glyphicon glyphicon-minus"></span>
                                         </button>
                                     </span>
-                                    <input type="text" id="quantity" name="product_qty" class="form-control input-number" value="1" min="1">
-                                    <span class="input-group-btn">
+                                    <input type="text" id="quantity" name="product_qty" class="form-control input-number qty" value="1" min="1">
+									<input class="auth_key" type="hidden" name="auth_key" value="<?php echo $auth_key; ?>" />
+                                    <input class="id" type="hidden" name="product_id" value="<?php echo $id; ?>" />
+									<span class="input-group-btn">
                                         <button type="button" class="quantity-right-plus btn btn-number" data-type="plus" data-field="">
                                             <span class="glyphicon glyphicon-plus"></span>
                                         </button>
                                     </span>
                                 </div>
-
 								<!-- !Input QTY -->
-								<input type="submit" name="submit" value="Add to cart" class="button" />
+								<button class="add_to_cart_button" id="addItem" type="submit">Add to Cart</button>
 							</fieldset>
 						</form>
 					</div>
@@ -200,10 +198,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<h6>৳ <?php echo $price; ?></h6>
 								</div>
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="index.php?add_cart=<?php echo $id; ?>" method="post">
+									<form class="form-submit">
 										<fieldset>
-											<input type="hidden" name="product_qty" value="1" />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
+											<input class="id" type="hidden" name="product_id" value="<?php echo $id; ?>" />
+											<input class="qty" type="hidden" name="product_qty" value="1" />
+											<input class="auth_key" type="hidden" name="auth_key" value="<?php echo $auth_key; ?>" />
+											<!-- <input type="submit" name="submit" value="Add to cart" class="button" /> -->
+											<button class="add_to_cart_button" id="addItem" type="submit">Add to Cart</button>
 										</fieldset>
 									</form>
 								</div>
@@ -253,33 +254,23 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<!-- Custom Jquery -->
 	<script>
 		$(document).ready(function(){
-
 			var quantitiy=0;
-			$('.quantity-right-plus').click(function(e){
-			
+			$('.quantity-right-plus').click(function(e){	
 				// Stop acting like a button
 				e.preventDefault();
 				// Get the field name
-				var quantity = parseInt($('#quantity').val());
-				
-				// If is not undefined
-					
-					$('#quantity').val(quantity + 1);
-
-				
+				var quantity = parseInt($('#quantity').val());		
+				// If is not undefined			
+					$('#quantity').val(quantity + 1);		
 					// Increment
-				
 			});
-
 			$('.quantity-left-minus').click(function(e){
 				// Stop acting like a button
 				e.preventDefault();
 				// Get the field name
 				var quantity = parseInt($('#quantity').val());
-				
 				// If is not undefined
-			
-					// Increment
+				// Increment
 					if(quantity>1){
 					$('#quantity').val(quantity - 1);
 					}

@@ -14,8 +14,6 @@ if(isset($_POST["search"]))
 <?php 
 require_once('db/db.php');
 require_once('includes/functions.php');
-add_cart();
-
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -108,13 +106,16 @@ add_cart();
 									</div>
 									<div class="info-product-price">
 										<span class="item_price">৳ <?php echo $price; ?></span>
-										<!-- <del>$280.00</del> -->
+										<del>$280.00</del>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="index.php?add_cart=<?php echo $id; ?>" method="post">
+										<form class="form-submit">
 											<fieldset>
-												<input type="hidden" name="product_qty" value="1" />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
+												<input class="id" type="hidden" name="product_id" value="<?php echo $id; ?>" />
+												<input class="qty" type="hidden" name="product_qty" value="1" />
+												<input class="auth_key" type="hidden" name="auth_key" value="<?php echo $auth_key; ?>" />
+												<!-- <input type="submit" name="submit" value="Add to cart" class="button" /> -->
+												<button class="add_to_cart_button" id="addItem" type="submit">Add to Cart</button>
 											</fieldset>
 										</form>
 									</div>

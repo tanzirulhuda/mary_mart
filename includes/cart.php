@@ -1,8 +1,9 @@
-<div id="cd-shadow-layer"></div>
- 
-<?php                      
-	$ip_add = getRealIpUser();			
-	$select_cart = "select * from cart where ip_add='$ip_add'";			
+<div id="cd-shadow-layer"></div> 
+<?php 
+if(isset($_COOKIE['current_user_auth_key'])){
+    $auth_key = $_COOKIE['current_user_auth_key'];
+}                     
+	$select_cart = "select * from cart where auth_key='$auth_key'";			
 	$run_cart = mysqli_query($conn,$select_cart);			
 	$count = mysqli_num_rows($run_cart);
 ?>
@@ -28,10 +29,24 @@
 				$total += $sub_total;				
 		?>
 		<li>
-			<span class="cd-qty"><?php echo $pro_qty ?>x</span>
-            <a style="text-decoration:inherit; color:inherit;" href="details.php?product_id=<?php echo $pro_id; ?>"><?php echo $product_title; ?></a>
-			<div class="cd-price">৳ <?php echo $sub_total ?></div>
-			<a href="" id="remove_id" data-value="<?php echo $pro_id; ?>" class="cd-item-remove cd-img-replace"></a>
+			<div style="display:flex;">
+				<div style="display:flex; flex-direction: column; align-items:center; margin-right:.5em;" class="inc-dec">
+				<form id="unq">
+					<div>
+						<div id="button" data-value="<?php echo $pro_id; ?>" class="dec button noselect">-</div>
+							<input class="noselect" type="text" id="quantity" value="<?php echo $pro_qty ?>" readonly/>
+						<div id="button" data-value="<?php echo $pro_id; ?>" class="inc button noselect">+</div>
+					</div>
+				</form>
+				</div>
+				<div id="item_info" style="align-self:center;">
+					<!-- <span class="cd-qty">x</span> -->
+					<a style="text-decoration:inherit; color:inherit;" href="details.php?product_id=<?php echo $pro_id; ?>"><?php echo $product_title; ?></a>
+					<div class="cd-price">৳ <?php echo $sub_total ?></div>
+					<!-- <a href="" data-id="" id="cd-item-remove" class="cd-item-remove cd-img-replace"></a> -->
+					<a href="" data-id="<?php echo $pro_id; ?>" id="cd-item-remove" class="cd-item-remove cd-img-replace"></a>
+				</div>
+			</div>
 		</li>
 		<?php }}; ?>
 	</ul> <!-- cd-cart-items -->
@@ -40,19 +55,24 @@
 		<p>Total <span>৳ <?php echo $total; ?></span></p>
 	</div> <!-- cd-cart-total -->
     <?php
-    if(!isset($_COOKIE['current_user_auth_key'])){ 
+    if(isset($_COOKIE['current_user_auth_key'])){ 
     ?>
-    <a href="#" data-toggle="modal" data-target="#myModal1" id="checkout-btn" class="checkout-btn">Place order</a>
-    <?php }else{ ?>
-	<a href="checkout.php" id="checkout-btn" class="checkout-btn">Place order</a>
-    <?php }; ?>
+	<a href="checkout.php" id="checkout-btn">
+		<div class="checkout-btn">
+			Place order
+		</div>
+	</a>
+    <?php } ;?>
     <?php }else{ ?>
     
     <div style="width:100%; margin-top:10px;">
-    <img width="100%" height="100%" src="Images/empty.svg">
+    <img width="100%" height="100%" src="images/empty.svg">
     </div>
-    
-    <a href="index.php" id="checkout-btn" class="checkout-btn">Continue shopping</a>
+	<a href="index.php" id="checkout-btn">
+		<div class="checkout-btn">
+			Continue shopping
+		</div>
+	</a>
     
     
     <?php }; ?>
@@ -62,5 +82,4 @@
 
 
 	<!-- !SideBar Cart -->
-
 
