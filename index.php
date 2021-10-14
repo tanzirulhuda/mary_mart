@@ -152,7 +152,7 @@ require_once('includes/functions.php');
 						
 						<?php
 					
-						$get_products = "select * from products order by rand() limit 20";
+						$get_products = "select * from products order by rand() limit 15";
 						$run_products = mysqli_query($conn, $get_products);
 	
 						while($row_products = mysqli_fetch_array($run_products)){
@@ -182,15 +182,20 @@ require_once('includes/functions.php');
 										<!-- <del>$280.00</del> -->
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+										<?php
+											if(!isset($_COOKIE['current_user_auth_key'])){
+										?>
+										<button class="hiddenRegisterBtn"><a style="color:inherit;text-decoration:none;" href="#" data-toggle="modal" data-target="#myModal1">Add to Cart</a></button>
+										<?php }else{ ?>
 										<form class="form-submit">
 											<fieldset>
 												<input class="id" type="hidden" name="product_id" value="<?php echo $id; ?>" />
 												<input class="qty" type="hidden" name="product_qty" value="1" />
 												<input class="auth_key" type="hidden" name="auth_key" value="<?php echo $auth_key; ?>" />
-												<!-- <input type="submit" name="submit" value="Add to cart" class="button" /> -->
 												<button class="add_to_cart_button" id="addItem" type="submit">Add to Cart</button>
 											</fieldset>
 										</form>
+										<?php }; ?>
 									</div>
 
 								</div>
@@ -245,15 +250,20 @@ require_once('includes/functions.php');
 									<h6>৳ <?php echo $price; ?></h6>
 								</div>
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form class="form-submit">
+									<?php
+										if(!isset($_COOKIE['current_user_auth_key'])){
+									?>
+									<button style="padding:20px;" class="hiddenRegisterBtn"><a style="color:inherit;text-decoration:none;" href="#" data-toggle="modal" data-target="#myModal1">Add to Cart</a></button>
+									<?php }else{ ?>
+									<form class="form-submit">
 										<fieldset>
-												<input class="id" type="hidden" name="product_id" value="<?php echo $id; ?>" />
-												<input class="qty" type="hidden" name="product_qty" value="1" />
-												<input class="auth_key" type="hidden" name="auth_key" value="<?php echo $auth_key; ?>" />
-												<!-- <input type="submit" name="submit" value="Add to cart" class="button" /> -->
-												<button class="add_to_cart_button" id="addItem" type="submit">Add to Cart</button>
-											</fieldset>
-										</form>
+											<input class="id" type="hidden" name="product_id" value="<?php echo $id; ?>" />
+											<input class="qty" type="hidden" name="product_qty" value="1" />
+											<input class="auth_key" type="hidden" name="auth_key" value="<?php echo $auth_key; ?>" />
+											<button class="add_to_cart_button" id="addItem" type="submit">Add to Cart</button>
+										</fieldset>
+									</form>
+									<?php }; ?>
 								</div>
 							</div>
 						</div>

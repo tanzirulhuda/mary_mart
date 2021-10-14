@@ -206,75 +206,111 @@
                           
                             <tr><!-- th begin -->
                            
-                                <th> Order no: </th>
-                                <th> Customer Phone: </th>
+                                <th> No: </th>
+                                <th> Name</th>
+                                <th> Phone: </th>
+                                <th> Vendor name </th>
+                                <th> Product: </th>
+                                <th> Price: </th>
+                                <th> Qty: </th>
+                                <th> Order Time: </th>
                                 <th> Invoice No: </th>
-                                <th> Product ID: </th>
-                                <th> Product Qty: </th>
+                                <th> Total: </th>
+                                <th> Delivery time: </th>
                                 <th> Address: </th>
                                 <th> Status: </th>
+                                <th> Action: </th>
                             
                             </tr><!-- th finish -->
                             
                         </thead><!-- thead finish -->
                         
                         <tbody><!-- tbody begin -->
-                          
+                            
                             <?php 
-                          
+          
                                 $i=0;
+                            
+                                $get_orders = "select * from pending_orders";
+                                
+                                $run_orders = mysqli_query($conn,$get_orders);
           
-                                $get_order = "select * from pending_orders order by 1 DESC LIMIT 0,5";
-          
-                                $run_order = mysqli_query($conn,$get_order);
-          
-                                while($row_order=mysqli_fetch_array($run_order)){
+                                while($row_order=mysqli_fetch_array($run_orders)){
                                     
                                     $order_id = $row_order['order_id'];
+
+                                    $customer_order = $row_order['customer_order'];
                                     
                                     $c_id = $row_order['customer_id'];
+
+                                    $delivery_time = $row_order['delivery_time'];
                                     
                                     $invoice_no = $row_order['invoice_no'];
                                     
-                                    $product_id = $row_order['product_id'];
+                                    $product_id = $row_order['pro_id'];
                                     
                                     $qty = $row_order['qty'];
                                     
                                     $order_status = $row_order['order_status'];
                                     
+                                    $get_products = "select * from products where id='$product_id'";
+                                    
+                                    $run_products = mysqli_query($conn,$get_products);
+                                    
+                                    $row_products = mysqli_fetch_array($run_products);
+                                    
+                                    $product_title = $row_products['p_title'];
+
+                                    $price = $row_products['p_price'];
+
+                                    $vendor_id = $row_products['vendor_id'];
+
+                                    $get_vendor = "select * from vendors where id='$vendor_id'";
+
+                                    $run_vendor = mysqli_query($conn, $get_vendor);
+
+                                    $row_vendor = mysqli_fetch_array($run_vendor);
+
+                                    $vendor_name = $row_vendor['name'];
+                                    
+                                    $get_customer = "select * from customers where customer_id='$c_id'";
+                                    
+                                    $run_customer = mysqli_query($conn,$get_customer);
+                                    
+                                    $row_customer = mysqli_fetch_array($run_customer);
+
+                                    $customer_name = $row_customer['customer_name'];
+
+                                    $delivery_address = $row_customer['customer_address'];
+                                    
+                                    $customer_Phone = $row_customer['customer_phone'];
+    
+                                    $order_date = $row_order['order_date'];
+                                    
+                                    $order_amount = $row_order['due_amount'];
+                                    
                                     $i++;
                             
                             ?>
-                           
+                            
                             <tr><!-- tr begin -->
-                               
-                                <td> <?php echo $order_id; ?> </td>
+                                <td> <?php echo $i; ?> </td>
+                                <td><?php echo $customer_name; ?></td>
+                                <td> <?php echo $customer_Phone; ?> </td>
+                                <td> <?php echo $vendor_name; ?> </td>
+                                <td> <?php echo $product_title; ?> </td>
+                                <td> <?php echo $price; ?> </td>
+                                <td> <?php echo $qty; ?></td>
+                                <td> <?php echo $order_date; ?> </td>
+                                <td> <?php echo $invoice_no; ?></td>
+                                <td> <?php echo $order_amount; ?> </td>
+                                <td><?php echo $delivery_time ?></td>
+                                <td><?php echo $delivery_address; ?></td>
                                 <td>
                                     
                                     <?php 
                                     
-                                        $get_customer = "select * from customers where customer_id='$c_id'";
-                                    
-                                        $run_customer = mysqli_query($con,$get_customer);
-                                    
-                                        $row_customer = mysqli_fetch_array($run_customer);
-                                    
-                                        $customer_email = $row_customer['customer_email'];
-                                    
-                                        echo $customer_email;
-                                    
-                                    ?>
-                                    
-                                </td>
-                                <td> <?php echo $invoice_no; ?> </td>
-                                <td> <?php echo $product_id; ?> </td>
-                                <td> <?php echo $qty; ?> </td>
-                                <td> <?php echo $size; ?> </td>
-                                <td>
-                                    
-                                    <?php 
-                                    
-                                        if($order_status=='pending'){
+                                        if($order_status=='In progress'){
                                             
                                             echo $order_status='pending';
                                             
@@ -287,7 +323,12 @@
                                     ?>
                                     
                                 </td>
-                                
+                                <td> 
+                                     
+                                     <a onclick="return confirm('Are you sure?')" href="index.php?delete_order=<?php echo $customer_order; ?>"> Delete </a> 
+                                     <a href="index.php?delivered_order=<?php echo $customer_order; ?>"> Delivered </a>
+                                     
+                                </td>
                             </tr><!-- tr finish -->
                             
                             <?php } ?>

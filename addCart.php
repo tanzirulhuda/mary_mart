@@ -1,9 +1,6 @@
 <?php 
 session_start();
 require_once("./db/db.php");
-if(isset($_COOKIE['current_user_auth_key'])){
-    $auth_key = $_COOKIE['current_user_auth_key'];
-}
 
 if(isset($_POST['id']) && isset($_POST['qty']) && isset($_POST['auth_key'])){
     $id = $_POST['id'];
@@ -23,10 +20,16 @@ if(isset($_POST['id']) && isset($_POST['qty']) && isset($_POST['auth_key'])){
 }
 // Cart Item Count
 if(isset($_GET['cartItem'])){
-    $get_items = "select * from cart where auth_key='$auth_key'";
-    $run_items = mysqli_query($conn,$get_items);
-    $count_items = mysqli_num_rows($run_items);
-    echo $count_items;
+    if(isset($_COOKIE['current_user_auth_key'])){
+        $auth_key = $_COOKIE['current_user_auth_key'];
+        $get_items = "select * from cart where auth_key='$auth_key'";
+        $run_items = mysqli_query($conn,$get_items);
+        $count_items = mysqli_num_rows($run_items);
+        echo $count_items;
+    }else{
+        echo 0;
+    }
+
 }
 
 ?>

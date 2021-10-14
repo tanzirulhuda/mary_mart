@@ -1,11 +1,11 @@
 <div id="cd-shadow-layer"></div> 
 <?php 
 if(isset($_COOKIE['current_user_auth_key'])){
-    $auth_key = $_COOKIE['current_user_auth_key'];
-}                     
+    $auth_key = $_COOKIE['current_user_auth_key'];                    
 	$select_cart = "select * from cart where auth_key='$auth_key'";			
 	$run_cart = mysqli_query($conn,$select_cart);			
 	$count = mysqli_num_rows($run_cart);
+} 
 ?>
 
 <div id="cd-cart">

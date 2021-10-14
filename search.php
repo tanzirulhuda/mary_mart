@@ -109,15 +109,20 @@ require_once('includes/functions.php');
 										<del>$280.00</del>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+										<?php
+											if(!isset($_COOKIE['current_user_auth_key'])){
+										?>
+										<button class="hiddenRegisterBtn"><a style="color:inherit;text-decoration:none;" href="#" data-toggle="modal" data-target="#myModal1">Add to Cart</a></button>
+										<?php }else{ ?>
 										<form class="form-submit">
 											<fieldset>
 												<input class="id" type="hidden" name="product_id" value="<?php echo $id; ?>" />
 												<input class="qty" type="hidden" name="product_qty" value="1" />
 												<input class="auth_key" type="hidden" name="auth_key" value="<?php echo $auth_key; ?>" />
-												<!-- <input type="submit" name="submit" value="Add to cart" class="button" /> -->
 												<button class="add_to_cart_button" id="addItem" type="submit">Add to Cart</button>
 											</fieldset>
 										</form>
+										<?php }; ?>
 									</div>
 
 								</div>
