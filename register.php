@@ -12,7 +12,7 @@ if(isset($_POST['register'])){
     
     $insert_data = "insert into customers (customer_name, customer_phone, customer_pass, customer_address, customer_ip, auth_key) values('$name','$phone','$password','$address','$ip','$auth_key')";
     $run_query = mysqli_query($conn, $insert_data);
-    
+    // If registration successfull
     if($run_query == true){
         echo "<script>alert('Registered successfully!')</script>";
         setcookie("current_user_auth_key",$auth_key,time()+(86400*730));

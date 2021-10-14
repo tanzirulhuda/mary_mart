@@ -1,40 +1,26 @@
 <?php 
-
     session_start();
-    include("../db/db.php");
-    
-    if(!isset($_SESSION['vendor_email'])){
-        
-        echo "<script>window.open('login.php','_self')</script>";
-        
+    include("../db/db.php");  
+    if(!isset($_SESSION['vendor_email'])){      
+        echo "<script>window.open('login.php','_self')</script>";       
     }else{
-        $vendor_session = $_SESSION['vendor_email'];
-        
-        $get_vendor = "select * from vendors where email='$vendor_session'";
-        
-        $run_vendor = mysqli_query($conn,$get_vendor);
-        
-        $row_vendor = mysqli_fetch_array($run_vendor);
-        
-        $vendor_id = $row_vendor['id'];
-        
-        $vendor_name = $row_vendor['name'];
-        
+        $vendor_session = $_SESSION['vendor_email'];    
+        $get_vendor = "select * from vendors where email='$vendor_session'";    
+        $run_vendor = mysqli_query($conn,$get_vendor);       
+        $row_vendor = mysqli_fetch_array($run_vendor);    
+        $vendor_id = $row_vendor['id'];       
+        $vendor_name = $row_vendor['name'];       
         $vendor_email = $row_vendor['email'];
-
         $vendor_image = $row_vendor['image'];
-
         $vendor_contact = $row_vendor['contact'];
-
         $vendor_district = $row_vendor['district'];
-
         $vendor_location = $row_vendor['location'];
-
-        $get_products = "select * from products where vendor_id='$vendor_id'";
-        
-        $run_products = mysqli_query($conn,$get_products);
-        
+        $get_products = "select * from products where vendor_id='$vendor_id'";  
+        $run_products = mysqli_query($conn,$get_products); 
         $count_products = mysqli_num_rows($run_products);
+        $get_delivered_product = "select * from customer_orders where vendor_id='$vendor_id' and order_status='Delivered'";
+        $run_delivered_product = mysqli_query($conn, $get_delivered_product);
+        $total_sell = mysqli_num_rows($run_delivered_product);
         
 ?>
 
@@ -70,38 +56,27 @@
             <div class="container-fluid"><!-- container-fluid begin -->
                 
                 <?php
-                
-                    if(isset($_GET['dashboard'])){
-                        
-                        include("./dashboard.php");
-                        
+                    if(isset($_GET['dashboard'])){   
+                        include("./dashboard.php");                       
                 }
-                   if(isset($_GET['insert_product'])){
-                        
-                        include("./insert/insert_product.php");
-                        
+                   if(isset($_GET['insert_product'])){           
+                        include("./insert/insert_product.php");        
                 }
-                   if(isset($_GET['view_products'])){
-                        
-                        include("./view/view_products.php");
-                        
+                   if(isset($_GET['view_products'])){    
+                        include("./view/view_products.php"); 
                 }
-                   if(isset($_GET['delete_product'])){
-                        
-                        include("./delete/delete_product.php");
-                        
+                   if(isset($_GET['delete_product'])){   
+                        include("./delete/delete_product.php");    
                 }
-                   if(isset($_GET['edit_product'])){
-                        
-                        include("./edit/edit_product.php");
-                        
+                   if(isset($_GET['edit_product'])){    
+                        include("./edit/edit_product.php");   
                 }
-                
-                   if(isset($_GET['user_profile'])){
-                        
-                        include("./user_profile.php");
-                        
+                   if(isset($_GET['user_profile'])){   
+                        include("./user_profile.php");  
                 }
+                   if(isset($_GET['view_sale'])){
+                       include("./view/view_sale.php");
+                   }
         
                 ?>
                 

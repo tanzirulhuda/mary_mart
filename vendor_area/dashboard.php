@@ -68,7 +68,7 @@
                     </div><!-- col-xs-3 finish -->
                     
                     <div class="col-xs-9 text-right"><!-- col-xs-9 text-right begin -->
-                        <div class="huge"> 13 </div>
+                        <div class="huge"> <?php echo $total_sell; ?> </div>
                            
                         <div> Total sale </div>
                         
@@ -77,7 +77,7 @@
                 </div><!-- panel-heading row finish -->
             </div><!-- panel-heading finish -->
             
-            <a href="index.php?view_orders"><!-- a href begin -->
+            <a href="index.php?view_sale"><!-- a href begin -->
                 <div class="panel-footer"><!-- panel-footer begin -->
                    
                     <span class="pull-left"><!-- pull-left begin -->
