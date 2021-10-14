@@ -43,9 +43,10 @@
                                 <th> Invoice No: </th>
                                 <th> Product: </th>
                                 <th> Qty: </th>
-                                <th> Order Time: </th>
+                                <th> O. Time: </th>
                                 <th> Total Amount: </th>
-                                <th> Delivery time: </th>
+                                <th> D. time: </th>
+                                <th> D. date: </th>
                                 <th> Address: </th>
                                 <th> Status: </th>
                                 <th> Action: </th>
@@ -71,6 +72,8 @@
                                     $c_id = $row_order['customer_id'];
 
                                     $delivery_time = $row_order['delivery_time'];
+
+                                    $delivery_date = $row_order['delivery_date'];
                                     
                                     $invoice_no = $row_order['invoice_no'];
                                     

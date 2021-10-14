@@ -213,10 +213,11 @@
                                 <th> Product: </th>
                                 <th> Price: </th>
                                 <th> Qty: </th>
-                                <th> Order Time: </th>
+                                <th> O. Time: </th>
                                 <th> Invoice No: </th>
                                 <th> Total: </th>
-                                <th> Delivery time: </th>
+                                <th> D. time: </th>
+                                <th> D. Date: </th>
                                 <th> Address: </th>
                                 <th> Status: </th>
                                 <th> Action: </th>
@@ -244,6 +245,8 @@
                                     $c_id = $row_order['customer_id'];
 
                                     $delivery_time = $row_order['delivery_time'];
+
+                                    $delivery_date = $row_order['delivery_date'];
                                     
                                     $invoice_no = $row_order['invoice_no'];
                                     
@@ -305,6 +308,7 @@
                                 <td> <?php echo $invoice_no; ?></td>
                                 <td> <?php echo $order_amount; ?> </td>
                                 <td><?php echo $delivery_time ?></td>
+                                <td><?php echo $delivery_date ?></td>
                                 <td><?php echo $delivery_address; ?></td>
                                 <td>
                                     

@@ -125,6 +125,18 @@ require_once('./includes/cart.php');
                         <option value="7:00 - 8:00 PM">7:00 - 8:00 PM</option>  
                     </select>
                   </div>
+                  <div class="form-group">
+                    <select name="delivery_date" class="delivery_date">
+                        <?php
+                        date_default_timezone_set("Asia/Dhaka");
+                        $today = date("Y-m-d");
+                        $tomorrow = date('Y-m-d', strtotime(' +1 day'));
+                        
+                        ?>
+                        <option value="<?php echo $today; ?>">Today</option>  
+                        <option value="<?php echo $tomorrow; ?>">Tomorrow</option>  
+                    </select>
+                  </div>
                   <input type="hidden" name="due_amount" value="<?php echo $total; ?>">
                   <div class="form-group">
                     <input style="background:#ff5722; color:#fff;" name="confirm_order" type="submit" value="Confirm order" class="btn btn-small">

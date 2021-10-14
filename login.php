@@ -15,16 +15,16 @@ if(isset($_POST['sign_in'])){
     $check_cart = mysqli_num_rows($run_cart);
     if($check_customer==0){     
         echo "<script>alert('Your email or password is wrong')</script>";
-        header('location: index.php');
+        echo "<script>window.top.location='https://www.marymart.xyz/index.php'</script>";
         exit();
     }
     
     if($check_customer==1 AND $check_cart==0){
        setcookie("current_user_auth_key",$auth_key,time()+(86400*730));
-        header('location: ./index.php');  
+       echo "<script>window.top.location='https://www.marymart.xyz/index.php'</script>";
     }else{  
        setcookie("current_user_auth_key",$auth_key,time()+(86400*730));
-       header('location: ./index.php');    
+       echo "<script>window.top.location='https://www.marymart.xyz/index.php'</script>";
     }
 }
 

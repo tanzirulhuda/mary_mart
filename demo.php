@@ -1,60 +1,35 @@
-<div style="display:flex;justify-content:center; align-item:center;">
-<!-- <select name="delivery_time" class="delivery_time">
-	<option value="8:00 - 9:00 AM">8:00 - 9:00 AM</option>  
-	<option value="9:00 - 10:00 AM">9:00 - 10:00 AM</option>  
-	<option value="10:00 - 11:00 AM">10:00 - 11:00 AM</option>  
-	<option value="11:00 - 12:00 AM">11:00 - 12:00 AM</option>  
-	<option value="12:00 - 1:00 PM">12:00 - 1:00 PM</option>  
-	<option value="1:00 - 2:00 PM">1:00 - 2:00 PM</option>  
-	<option value="2:00 - 3:00 PM">2:00 - 3:00 PM</option>  
-	<option value="3:00 - 4:00 PM">3:00 - 4:00 PM</option>  
-	<option value="4:00 - 5:00 PM">4:00 - 5:00 PM</option>  
-	<option value="5:00 - 6:00 PM">5:00 - 6:00 PM</option>  
-	<option value="6:00 - 7:00 PM">6:00 - 7:00 PM</option>  
-	<option value="7:00 - 8:00 PM">7:00 - 8:00 PM</option>  
-</select> -->
 <?php
-function create_time_range($start, $end, $interval = '60 mins', $format = '12') {
-    $startTime = strtotime($start); 
-    $endTime   = strtotime($end);
-    $returnTimeFormat = ($format == '12')?'ha':'ha';
-
-    $current   = time(); 
-    $addTime   = strtotime('+'.$interval, $current); 
-    $diff      = $addTime - $current;
-
-    $times = array(); 
-    while ($startTime < $endTime) { 
-        $times[] = date($returnTimeFormat, $startTime); 
-        $startTime += $diff; 
-    } 
-    $times[] = date($returnTimeFormat, $startTime); 
-    return $times; 
+date_default_timezone_set("Asia/Dhaka");
+//Custom time set
+$date = date_create('2001-01-01');
+date_time_set($date, 12, 00);
+$date = date_format($date, 'h:ia') . "\n";
+// $c_hour = date("h:00a");
+$c_hour = $date;
+if($c_hour < strtotime("8:00") && $c_hour < strtotime("17:00")){
+	$c_hour = "7:00";
+}else{
+	$c_hour = $date;
 }
-$times = create_time_range('8:00', '20:00', '60 mins');
-?>
-<!-- <select name="time_picker">
-    <option value="">Select Time</option>
-    <?php foreach($times as $key=>$val){ ?>
-    <option value="<?php echo $val; ?>"><?php echo $val; ?>-<?php echo $val; ?></option>
-    <?php } ?>
-</select> -->
-</div>
-
-
-
-
-<br><br>
-<?php
-$start = "08:00";
-$end = "20:00";
+$start = $c_hour;
+$end = "18:00";
 
 $tStart = strtotime($start);
+$tStart = strtotime('+60 minutes',$tStart);
 $tEnd = strtotime($end);
 $tNow = $tStart;
 
+?>
+<select name="" id="">
+<?php
 while($tNow <= $tEnd){
-  echo date("H:i",$tNow)."\n";
-  $tNow = strtotime('+60 minutes',$tNow);
-}
+?>
+<option value=""><?php echo date("ha",$tNow)."\n";$tNow = strtotime('+60 minutes',$tNow); ?> - <?php echo date("h:ia",$tNow)."\n";?></option>
+<?php } ?>
+</select>
+
+<br><br><br><br><br><hr>
+
+<?php
+echo $date;
 ?>
