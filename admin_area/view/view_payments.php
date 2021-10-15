@@ -39,12 +39,11 @@
                             <tr><!-- tr begin -->
                                 <th> No: </th>
                                 <th> Invoice No: </th>
+                                <th> Product price: </th>
+                                <th> Delivery Charge: </th>
                                 <th> Amount Paid: </th>
                                 <th> Method: </th>
-                                <th> Reference No: </th>
-                                <th> Payment Code: </th>
                                 <th> Payment Date: </th>
-                                <th> Delete Payment: </th>
                             </tr><!-- tr finish -->
                         </thead><!-- thead finish -->
                         
@@ -54,26 +53,19 @@
           
                                 $i=0;
                             
-                                $get_payments = "select * from payments";
+                                $get_payments = "select * from invoice";
                                 
-                                $run_payments = mysqli_query($con,$get_payments);
+                                $run_payments = mysqli_query($conn,$get_payments);
           
                                 while($row_payments=mysqli_fetch_array($run_payments)){
                                     
-                                    $payment_id = $row_payments['payment_id'];
-                                    
-                                    $invoice_no = $row_payments['invoice_no'];
-                                    
-                                    $amount = $row_payments['amount'];
-                                    
-                                    $payment_mode = $row_payments['payment_mode'];
-                                    
-                                    $ref_no = $row_payments['ref_no'];
-                                    
-                                    $code = $row_payments['code'];
-                                    
-                                    $payment_date = $row_payments['payment_date'];
-                                    
+                                    $invoice_no = $row_payments['invoice'];
+                                    $pro_price = $row_payments['price'];
+                                    $delivery_charge = $row_payments['delivery_charge'];
+                                    $amount = $row_payments['total'];
+                                    $payment_mode = "COD";
+                                    $payment_date = $row_payments['order_date'];
+                                    $date = date('Y-m-d',strtotime($payment_date));
                                     $i++;
                             
                             ?>
@@ -81,20 +73,11 @@
                             <tr><!-- tr begin -->
                                 <td> <?php echo $i; ?> </td>
                                 <td> <?php echo $invoice_no; ?> </td>
+                                <td>৳ <?php echo $pro_price; ?> </td>
+                                <td>৳ <?php echo $delivery_charge; ?> </td>
                                 <td> <?php echo $amount; ?></td>
                                 <td> <?php echo $payment_mode; ?> </td>
-                                <td> <?php echo $ref_no; ?></td>
-                                <td> <?php echo $code; ?> </td>
-                                <td> <?php echo $payment_date; ?> </td>
-                                <td> 
-                                     
-                                     <a href="index.php?delete_payment=<?php echo $payment_id; ?>">
-                                     
-                                        <i class="fa fa-trash-o"></i> Delete
-                                    
-                                     </a> 
-                                     
-                                </td>
+                                <td> <?php echo $date; ?> </td>
                             </tr><!-- tr finish -->
                             
                             <?php } ?>

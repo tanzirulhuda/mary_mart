@@ -8,6 +8,7 @@ if(isset($_COOKIE['current_user_auth_key'])){
     $row_current_customer = mysqli_fetch_array($run_current_customer);
     $customer_name = $row_current_customer['customer_name'];
 	$customer_addr = $row_current_customer['customer_address'];
+    $customer_id = $row_current_customer['customer_id'];
 }
 
 
@@ -180,7 +181,7 @@ if(isset($_COOKIE['current_user_auth_key'])){
 					<div class="modal_body_left modal_body_left1">
 	                   <div class="list-group">
                           <a href="#" class="list-group-item disabled"><?php echo $customer_name; ?></a>
-                          <a href="#" class="list-group-item">View orders</a>
+                          <a href="./my_order.php" class="list-group-item">View orders</a>
                           <a href="#" class="list-group-item">Change Password</a>
                           <a href="./logout.php" class="list-group-item">Logout</a>
                         </div>

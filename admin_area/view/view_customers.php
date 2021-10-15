@@ -39,7 +39,6 @@
                             <tr><!-- tr begin -->
                                 <th> No: </th>
                                 <th> Name: </th>
-                                <th> Image: </th>
                                 <th> <i class="fa fa-phone" aria-hidden="true"></i> Phone: </th>
                                 <th> Address: </th>
                                 <th> Delete: </th>
@@ -62,8 +61,6 @@
                                     
                                     $c_name = $row_c['customer_name'];
                                     
-                                    $c_img = $row_c['customer_image'];
-                                    
                                     $c_phone = $row_c['customer_phone'];
                                     
                                     $c_address = $row_c['customer_address'];
@@ -75,7 +72,6 @@
                             <tr><!-- tr begin -->
                                 <td> <?php echo $i; ?> </td>
                                 <td> <?php echo $c_name; ?> </td>
-                                <td> <img style="object-fit:cover;" src="../customer/images/<?php echo $c_img; ?>" width="60" height="60"></td>
                                 <td> <?php echo $c_phone; ?> </td>
                                 <td> <?php echo $c_address ?> </td>
                                 <td> 

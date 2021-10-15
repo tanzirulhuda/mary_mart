@@ -220,7 +220,7 @@
                                 <th> D. Date: </th>
                                 <th> Address: </th>
                                 <th> Status: </th>
-                                <th> Action: </th>
+                                <th colspan="2"> Action: </th>
                             
                             </tr><!-- th finish -->
                             
@@ -327,12 +327,10 @@
                                     ?>
                                     
                                 </td>
-                                <td> 
-                                     
-                                     <a onclick="return confirm('Are you sure?')" href="index.php?delete_order=<?php echo $customer_order; ?>"> Delete </a> 
-                                     <a href="index.php?delivered_order=<?php echo $customer_order; ?>"> Delivered </a>
-                                     
+                                <td>  
+                                     <a onclick="return confirm('Are you sure?')" href="index.php?delete_order=<?php echo $customer_order; ?>"> Delete </a>   
                                 </td>
+                                <td><a href="index.php?delivered_order=<?php echo $customer_order; ?>"> Delivered </a></td>
                             </tr><!-- tr finish -->
                             
                             <?php } ?>

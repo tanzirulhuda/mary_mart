@@ -62,9 +62,9 @@ require_once('./includes/cart.php');
                     $only_price = $row_products['p_price'];
                     $sub_total = $row_products['p_price']*$pro_qty;	
                     if($total>400){
-                        $delivery_charge = 9;
+                        $delivery_charge = 5;
                     }else{
-                        $delivery_charge = 19;
+                        $delivery_charge = 5;
                     }
                     ?>
                   <tr>
@@ -138,6 +138,7 @@ require_once('./includes/cart.php');
                     </select>
                   </div>
                   <input type="hidden" name="due_amount" value="<?php echo $total; ?>">
+                  <input type="hidden" name="delivery_charge" value="<?php echo $delivery_charge; ?>">
                   <div class="form-group">
                     <input style="background:#ff5722; color:#fff;" name="confirm_order" type="submit" value="Confirm order" class="btn btn-small">
                   </div>

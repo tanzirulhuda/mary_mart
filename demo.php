@@ -2,14 +2,25 @@
 date_default_timezone_set("Asia/Dhaka");
 //Custom time set
 $date = date_create('2001-01-01');
-date_time_set($date, 12, 00);
-$date = date_format($date, 'h:ia') . "\n";
-// $c_hour = date("h:00a");
+date_time_set($date, 3, 00);
+$date = date_format($date, 'h:i');
+//Custom first hour set
+$fhour = date_create('2001-01-01');
+date_time_set($fhour, 7, 00);
+$fhour = date_format($fhour, 'h:i');
+//Second hour set
+$shour = date_create('2001-01-01');
+date_time_set($shour, 17, 00);
+$shour = date_format($shour, 'h:i');
+
+// $c_hour = date("h:00");
+// $date = date("h:00");
 $c_hour = $date;
-if($c_hour < strtotime("8:00") && $c_hour < strtotime("17:00")){
-	$c_hour = "7:00";
+
+if($c_hour <= $fhour && $c_hour >= $shour){
+    $c_hour = "7:00";
 }else{
-	$c_hour = $date;
+    $c_hour = $date;
 }
 $start = $c_hour;
 $end = "18:00";
@@ -31,5 +42,5 @@ while($tNow <= $tEnd){
 <br><br><br><br><br><hr>
 
 <?php
-echo $date;
+// echo $date;
 ?>

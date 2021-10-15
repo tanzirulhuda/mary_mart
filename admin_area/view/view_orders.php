@@ -38,22 +38,24 @@
                         <thead><!-- thead begin -->
                             <tr><!-- tr begin -->
                                 <th> No: </th>
-                                <th> Customer name</th>
+                                <th> Name</th>
                                 <th> Phone: </th>
-                                <th> Invoice No: </th>
+                                <th> Vendor name </th>
                                 <th> Product: </th>
+                                <th> Price: </th>
                                 <th> Qty: </th>
                                 <th> O. Time: </th>
-                                <th> Total Amount: </th>
+                                <th> Invoice No: </th>
+                                <th> Total: </th>
                                 <th> D. time: </th>
-                                <th> D. date: </th>
+                                <th> D. Date: </th>
                                 <th> Address: </th>
                                 <th> Status: </th>
-                                <th> Action: </th>
+                                <th colspan="2"> Action: </th>
                             </tr><!-- tr finish -->
                         </thead><!-- thead finish -->
                         
-                        <tbody><!-- tbody begin -->
+                                                <tbody><!-- tbody begin -->
                             
                             <?php 
           
@@ -90,6 +92,18 @@
                                     $row_products = mysqli_fetch_array($run_products);
                                     
                                     $product_title = $row_products['p_title'];
+
+                                    $price = $row_products['p_price'];
+
+                                    $vendor_id = $row_products['vendor_id'];
+
+                                    $get_vendor = "select * from vendors where id='$vendor_id'";
+
+                                    $run_vendor = mysqli_query($conn, $get_vendor);
+
+                                    $row_vendor = mysqli_fetch_array($run_vendor);
+
+                                    $vendor_name = $row_vendor['name'];
                                     
                                     $get_customer = "select * from customers where customer_id='$c_id'";
                                     
@@ -115,12 +129,15 @@
                                 <td> <?php echo $i; ?> </td>
                                 <td><?php echo $customer_name; ?></td>
                                 <td> <?php echo $customer_Phone; ?> </td>
-                                <td> <?php echo $invoice_no; ?></td>
+                                <td> <?php echo $vendor_name; ?> </td>
                                 <td> <?php echo $product_title; ?> </td>
+                                <td> <?php echo $price; ?> </td>
                                 <td> <?php echo $qty; ?></td>
                                 <td> <?php echo $order_date; ?> </td>
+                                <td> <?php echo $invoice_no; ?></td>
                                 <td> <?php echo $order_amount; ?> </td>
                                 <td><?php echo $delivery_time ?></td>
+                                <td><?php echo $delivery_date ?></td>
                                 <td><?php echo $delivery_address; ?></td>
                                 <td>
                                     
@@ -139,12 +156,10 @@
                                     ?>
                                     
                                 </td>
-                                <td> 
-                                     
-                                     <a onclick="return confirm('Are you sure?')" href="index.php?delete_order=<?php echo $customer_order; ?>"> Delete </a> 
-                                     <a href="index.php?delivered_order=<?php echo $customer_order; ?>"> Delivered </a>
-                                     
+                                <td>  
+                                     <a onclick="return confirm('Are you sure?')" href="index.php?delete_order=<?php echo $customer_order; ?>"> Delete </a>   
                                 </td>
+                                <td><a href="index.php?delivered_order=<?php echo $customer_order; ?>"> Delivered </a></td>
                             </tr><!-- tr finish -->
                             
                             <?php } ?>
