@@ -106,7 +106,7 @@ require_once('includes/functions.php');
 									</div>
 									<div class="info-product-price">
 										<span class="item_price">৳ <?php echo $price; ?></span>
-										<del>$280.00</del>
+										<!-- <del>$280.00</del> -->
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										<?php
