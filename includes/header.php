@@ -223,6 +223,9 @@ if(isset($_COOKIE['current_user_auth_key'])){
 							<div class="styled-input">
 								<input type="password" placeholder="Password" name="password" id="password1" required>
                             </div>
+							<div class="styled-input">
+								<input type="password" placeholder="Confirm Password" id="password2" required>
+							</div>
                             <div class="styled-input">
 								<input type="text" placeholder="Address" name="address" required>
 							</div>

@@ -28,6 +28,8 @@
         $p_cat = $row_edit['cat_id'];
         
         $p_price = $row_edit['p_price'];
+
+        $mart_price = $row_edit['mart_price'];
         
         $p_desc = $row_edit['p_desc'];
 
@@ -185,6 +187,17 @@
                    </div><!-- form-group Finish -->
                    <div class="form-group"><!-- form-group Begin -->
                        
+                      <label class="col-md-3 control-label"> Mart Price </label> 
+                      
+                      <div class="col-md-6"><!-- col-md-6 Begin -->
+                          
+                          <input name="mart_price" type="number" class="form-control" value="<?php echo $mart_price; ?>" required>
+                          
+                      </div><!-- col-md-6 Finish -->
+                       
+                   </div><!-- form-group Finish -->
+                   <div class="form-group"><!-- form-group Begin -->
+                       
                        <label class="col-md-3 control-label"> Select location </label> 
                        
                        <div class="col-md-6"><!-- col-md-6 Begin -->
@@ -286,6 +299,7 @@ if(isset($_POST['update'])){
     $product_title = $_POST['product_title'];
     $product_cat = $_POST['product_cat'];
     $product_price = $_POST['product_price'];
+    $mart_price = $_POST['mart_price'];
     $product_desc = $_POST['product_desc'];
     $location = $_POST['location'];
     $keywords = $_POST['keywords'];
@@ -321,7 +335,7 @@ if(isset($_POST['update'])){
 
     //Update from database
     
-    $update_product = "update products set cat_id='$product_cat',p_title='$product_title',p_desc='$product_desc',p_price='$product_price',location='$location',keywords='$keywords' where id='$p_id'";
+    $update_product = "update products set cat_id='$product_cat',p_title='$product_title',p_desc='$product_desc',p_price='$product_price',mart_price='$mart_price',location='$location',keywords='$keywords' where id='$p_id'";
     
     $run_product = mysqli_query($conn,$update_product);
     

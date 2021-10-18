@@ -23,7 +23,7 @@
             
             <div class="panel-body"><!-- panel-body begin -->
                 <div class="table-responsive"><!-- table-responsive begin -->
-                    <table class="table table-striped table-bordered table-hover"><!-- table table-striped table-bordered table-hover begin -->
+                    <table class="table table-striped table-bordered table-hover" id="dataTable"><!-- table table-striped table-bordered table-hover begin -->
                         
                         <thead><!-- thead begin -->
                             <tr><!-- tr begin -->
@@ -33,6 +33,7 @@
                                 <th> Invoice no: </th>
                                 <th> Sale Date: </th>
                                 <th> Product Price: </th>
+                                <th> Mart Price: </th>
                                 <th> Sale qty: </th>
                                 <th> Total: </th>
                             </tr><!-- tr finish -->
@@ -53,11 +54,12 @@
                                         $row_pro = mysqli_fetch_array($run_pro);
                                         $pro_name = $row_pro['p_title'];
                                         $pro_price = $row_pro['p_price'];
+                                        $mart_price = $row_pro['mart_price'];
                                         $pro_img = $row_pro['p_img'];
                                     $sale_qty = $row_delivered_product['qty'];
                                     $invoice = $row_delivered_product['invoice_no'];
                                     $date = date("d/m/y", strtotime($row_delivered_product["order_date"]));
-                                    $total = $pro_price * $sale_qty ;
+                                    $total = $mart_price * $sale_qty ;
                                     $i++;
                             
                             ?>
@@ -69,6 +71,7 @@
                                 <td><?php echo $invoice; ?></td>
                                 <td> <?php echo $date; ?> </td>
                                 <td> ৳ <?php echo $pro_price; ?> </td>
+                                <td> ৳ <?php echo $mart_price; ?> </td>
                                 <td> <?php echo $sale_qty; ?> </td>
                                 <td> ৳ <?php echo $total; ?> </td>
                             </tr><!-- tr finish -->
